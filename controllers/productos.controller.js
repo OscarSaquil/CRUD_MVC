@@ -73,9 +73,8 @@ exports.getDelete = async (req, res) => {
 
 async function buscarProductosJSON(req, res) {
   try {
-    const filtro = req.query.busqueda || ''; // si no viene, asumimos cadena vacía
-    const lista = await productModel.buscarProductos(filtro);
-    // Devolver un JSON con la lista de productos encontrados
+    const filtro = req.query.busqueda || '';
+    const lista = await Product.buscarProductos(filtro);
     res.json({ success: true, data: lista });
   } catch (err) {
     console.error('Error en buscarProductosJSON:', err);
@@ -95,7 +94,7 @@ async function verListadoProductos(req, res) {
       titulo: 'Listado de Productos',
       // Si quieres, al cargar la página puedes enviar todos los productos:
       // productos: await productoModel.obtenerTodosLosProductos()
-      productos: await productModel.obtenerTodosLosProductos() 
+      productos: [await productModel.obtenerTodosLosProductos()] 
     });
   } catch (err) {
     console.error('Error en verListadoProductos:', err);

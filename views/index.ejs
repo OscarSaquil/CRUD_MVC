@@ -11,19 +11,12 @@
 
   
 
-  <!-- Incluye tu script JS que realizará el fetch y actualizará la tabla -->
-  <script src="/js/productos-busqueda.js"></script>
-
     <!-- Contenedor de mensajes de error o sin resultados -->
-  <div id="mensajeSinResultados" style="display: none; color: #b00; margin: 10px 0;">
-    No se encontraron productos para el término ingresado.
-  </div>
-  <div id="mensajeError" style="display: none; color: #b00; margin: 10px 0;">
-    Ocurrió un error al buscar los productos. Inténtalo de nuevo más tarde.
-  </div>
+  <div id="mensajeSinResultados" style="display:none;">Sin resultados</div>
+  <div id="mensajeError" style="display:none;">Error al buscar productos</div>
   <!-- Contenedor para la tabla de resultados -->
   <section class="tabla-container">
-    <table id="tablaProductos" border="1" cellpadding="5" cellspacing="0">
+    <table id="tablaProductos"  cellpadding="5" cellspacing="0">
       <thead>
         <tr>
           <th>ID</th>
@@ -46,10 +39,15 @@
 
   <!-- Sección de totales: sumas dinámicas -->
   <section class="totales-container" style="margin-top: 15px;">
-    <strong>Total Precios (Q): </strong><span id="totalPrecios">0.00</span>
+    <strong>Total Precios (Q): </strong><span id="totalPrecios"></span>
     &nbsp;&nbsp;
-    <strong>Total Cantidades: </strong><span id="totalCantidades">0</span>
+    <strong>Total Cantidades: </strong><span id="totalCantidades"></span>
   </section>
 
   </div>
 </div>
+
+<!-- Mueve el script aquí, después de todos los elementos -->
+<script src="/js/productos-busqueda.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ const router = express.Router();
 const productController = require('../controllers/productos.controller');
 
 // Ruta principal: / -> lista de productos
-router.get('/', productController.getIndex);
+router.get('/productos', productController.getIndex);
 
 // prueba
 router.get('/prueba', productController.prueba);
