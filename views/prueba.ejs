@@ -1,0 +1,69 @@
+<div class="contenedorCRUD" padding: 1rem;>
+  <main class="container-lista1">
+        <div id="mensaje"></div>
+          <script src="/js/busqueda.js"></script>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio (Q)</th>
+                <th>Stock</th>
+                <th>Creado</th>
+                <th>Actualizado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (productos.length === 0) { %>
+                <tr>
+                  <td colspan="8">No hay productos registrados.</td>
+                </tr>
+              <% } else { %>
+                <% productos.forEach(prod => { %>
+                  <tr>
+                    <td><%= prod.id %></td>
+                    <td><%= prod.codigo %></td>
+                    <td><%= prod.nombre %></td>
+                    <td><%= prod.descripcion %></td>
+                    <td><%= prod.precio%></td>
+                    <td><%= prod.stock %></td>
+                    <td><%= prod.creado_en.toISOString().slice(0, 19).replace('T', ' ') %></td>
+                    <td><%= prod.actualizado_en.toISOString().slice(0, 19).replace('T', ' ') %></td>
+                    <td>
+                    <a class="btn-edit" href="/edit/<%= prod.id %>">Editar</a>
+                    <a class="btn-delete" href="/delete/<%= prod.id %>" onclick="return confirm('¿Eliminar este producto?');">Eliminar</a>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } %>
+            </tbody>
+          </table>
+  </main>
+  <aside class="container-lista2">
+      <h2>Listado de Productos</h2>
+      <input type="text" id="busqueda" placeholder="buscar">
+      <table id="grid">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          </tr>
+          </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">Totales:</td>
+            <td id="sumaPrecios"></td>
+            <td id="sumaCantidades"></td>
+            <td id="sumaTotales"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </aside>
+</div>

@@ -1,0 +1,21 @@
+
+
+<h2>Editar Producto #<%= producto.id %></h2>
+
+<form action="/edit/<%= producto.id %>" method="POST" class="form-product">
+  <label for="codigo">Codigo:</label><br>
+  <input type="text" id="codigo" name="codigo" value="<%= producto.codigo %>"required><br><br>
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre" value="<%= producto.nombre %>" required><br><br>
+
+  <label for="descripcion">Descripción:</label><br>
+  <textarea id="descripcion" name="descripcion" rows="3"><%= producto.descripcion %></textarea><br><br>
+
+  <label for="precio">Precio (Q):</label><br>
+  <input type="number" id="precio" name="precio" step="0.01" min="0" value="<%= producto.precio %>" required><br><br>
+
+  <label for="stock">Stock:</label><br>
+  <input type="number" id="stock" name="stock" min="0" value="<%= producto.stock %>" required><br><br>
+
+  <button type="submit" class="btn-submit">Actualizar</button>
+</form>

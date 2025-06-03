@@ -1,0 +1,144 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #007bff;
+  margin-right: 10px;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.btn-edit, .btn-delete {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.form-product {
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+.form-product label {
+  font-weight: bold;
+}
+
+.form-product input[type="text"],
+.form-product input[type="number"],
+.form-product textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.btn-submit {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #218838;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #666;
+  font-size: 0.9em;
+}
+
+
+.container {  display: grid;
+  grid-template-columns: 1fr 1.3fr 0.7fr;
+  grid-template-rows: 0.4fr 2.1fr 0.5fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header header header"
+    "mainArea mainArea mainArea"
+    "footer footer footer";
+}
+
+.header { grid-area: header; }
+
+.mainArea {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.3fr 1.7fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "nav nav nav"
+    "main main main"
+    "main main main";
+  grid-area: mainArea;
+}
+
+.nav { grid-area: nav; }
+
+.main { grid-area: main; }
+
+.footer { grid-area: footer; }
