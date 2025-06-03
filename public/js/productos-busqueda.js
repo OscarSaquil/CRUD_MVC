@@ -34,11 +34,11 @@ function renderizarTabla(productos) {
 
   // Recorrer cada producto, crear una fila <tr> y añadirla
   productos.forEach(prod => {
-    const valorTotalProducto = parseFloat(prod.precio) * parseInt(prod.cantidad, 10);
+    const valorTotalProducto = parseFloat(prod.precio) * parseInt(prod.stock, 10);
 
     // Acumular totales
     sumaPrecios += valorTotalProducto;
-    sumaCantidades += parseInt(prod.cantidad, 10);
+    sumaCantidades += parseInt(prod.stock, 10);
 
     // Construir la fila
     const fila = document.createElement('tr');
@@ -49,7 +49,7 @@ function renderizarTabla(productos) {
       <td>${prod.nombre}</td>
       <td>${prod.descripcion || ''}</td>
       <td>${formatearMonto(prod.precio)}</td>
-      <td>${prod.cantidad}</td>
+      <td>${prod.stock}</td>
       <td>${formatearMonto(valorTotalProducto)}</td>
       <td>${new Date(prod.creado).toLocaleString()}</td>
       <td>${new Date(prod.actualizado).toLocaleString()}</td>

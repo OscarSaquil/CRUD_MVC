@@ -40,19 +40,19 @@ class Product {
   
   static async buscarProductos(filtro) {
     const term = `%${filtro.trim()}%`;
-    const [rows] = await db.query(
+    const sql = 
       `SELECT * FROM productos
        WHERE LOWER(codigo) LIKE LOWER(?) 
           OR LOWER(nombre) LIKE LOWER(?) 
           OR LOWER(COALESCE(descripcion, '')) LIKE LOWER(?)
-       ORDER BY nombre ASC`,
-      [term, term, term]
-    );
+       ORDER BY nombre ASC`;
+    const [rows] = await db.query(sql, [term, term, term]);
     return rows;
   }
+
   static async obtenerTodosLosProductos() {
-    const [rows] = await bd.query(`
-      SELECT id, codigo, nombre, descripcion, precio, cantidad, creado, actualizado
+    const [rows] = await db.query(`
+      SELECT id, codigo, nombre, descripcion, precio, stock, creado, actualizado
       FROM productos
       ORDER BY nombre ASC
     `);
