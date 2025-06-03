@@ -22,10 +22,6 @@ class Product {
     );
     return result.insertId; // ID del nuevo registro
   }
-  async grid(req, res) {
-    return res.json();
-  }
-  
 
   // Actualiza un producto existente
   static async updateById(id, { codigo, nombre, descripcion, precio, stock }) {
@@ -41,9 +37,29 @@ class Product {
   static async deleteById(id) {
     await db.query('DELETE FROM productos WHERE id = ?', [id]);
   }
-
   
-        
+  static async buscarProductos(filtro) {
+    const term = `%${filtro.trim()}%`;
+    const [rows] = await db.query(
+      `SELECT * FROM productos
+       WHERE LOWER(codigo) LIKE LOWER(?) 
+          OR LOWER(nombre) LIKE LOWER(?) 
+          OR LOWER(COALESCE(descripcion, '')) LIKE LOWER(?)
+       ORDER BY nombre ASC`,
+      [term, term, term]
+    );
+    return rows;
+  }
+  static async obtenerTodosLosProductos() {
+    const [rows] = await bd.query(`
+      SELECT id, codigo, nombre, descripcion, precio, cantidad, creado, actualizado
+      FROM productos
+      ORDER BY nombre ASC
+    `);
+    return rows;
+  }
+  
 };
+
 
 module.exports = Product;

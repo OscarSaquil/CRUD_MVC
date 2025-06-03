@@ -20,8 +20,8 @@ exports.getCreate = (req, res) => {
 // Procesa el formulario de creación
 exports.postCreate = async (req, res) => {
   try {
-    const { nombre, descripcion, precio, stock } = req.body;
-    await Product.create({ nombre, descripcion, precio, stock });
+    const { codigo, nombre, descripcion, precio, stock } = req.body;
+    await Product.create({ codigo, nombre, descripcion, precio, stock });
     res.redirect('/');
   } catch (error) {
     console.error(error);
@@ -69,6 +69,40 @@ exports.getDelete = async (req, res) => {
     res.status(500).send('Error al eliminar producto');
   }
 };
+
+
+async function buscarProductosJSON(req, res) {
+  try {
+    const filtro = req.query.busqueda || ''; // si no viene, asumimos cadena vacía
+    const lista = await productModel.buscarProductos(filtro);
+    // Devolver un JSON con la lista de productos encontrados
+    res.json({ success: true, data: lista });
+  } catch (err) {
+    console.error('Error en buscarProductosJSON:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Ocurrió un error al consultar los productos.'
+    });
+  }
+}
+exports.buscarProductosJSON = buscarProductosJSON;
+async function verListadoProductos(req, res) {
+  try {
+    // Opcional: podemos decidir si al cargar la página con req.query.busqueda ya llama al modelo
+    // o simplemente cargamos la página vacía y el front hará fetch de inmediato.
+    // Para este ejemplo, cargamos la vista con un arreglo vacío; el front pedirá los datos.
+    res.render('index', {
+      titulo: 'Listado de Productos',
+      // Si quieres, al cargar la página puedes enviar todos los productos:
+      // productos: await productoModel.obtenerTodosLosProductos()
+      productos: await productModel.obtenerTodosLosProductos() 
+    });
+  } catch (err) {
+    console.error('Error en verListadoProductos:', err);
+    res.status(500).send('Ocurrió un error al cargar la página de productos.');
+  }
+}
+exports.verListadoProductos = verListadoProductos;
 
 
 exports.prueba = (req, res) => {

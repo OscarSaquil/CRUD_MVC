@@ -20,4 +20,8 @@ router.post('/edit/:id', productController.postEdit);
 // Eliminar producto
 router.get('/delete/:id', productController.getDelete);
 
+
+router.get('/buscar', productController.buscarProductosJSON);
+router.get('/', productController.verListadoProductos);
+
 module.exports = router;

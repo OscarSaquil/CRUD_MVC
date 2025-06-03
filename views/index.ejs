@@ -1,52 +1,55 @@
 <div class="container">
-  
   <div class="mainArea">
-    <div class="nav">
+    <!-- Barra para busquedas -->
+    <section class="busqueda-container">
+    <label for="inputBusqueda">Buscar:</label>
+    <input type="text" id="inputBusqueda" placeholder="Código, nombre o descripción" />
+    <!-- (Opcional) Podrías agregar un <select> para "Buscar por" -->
+    <!-- <select id="campoBusqueda"><option value="codigo">Código</option>...</select> -->
+    <a href="/create" class="btn-agregar">Agregar Producto</a>
+  </section>
 
-    </div>
-    <div class="main">
-      <div id="mensaje"></div>
-        <script src="/js/busqueda.js"></script>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Codigo</th>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Precio (Q)</th>
-              <th>Stock</th>
-              <th>Creado</th>
-              <th>Actualizado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if (productos.length === 0) { %>
-              <tr>
-                <td colspan="8">No hay productos registrados.</td>
-              </tr>
-            <% } else { %>
-              <% productos.forEach(prod => { %>
-                <tr>
-                  <td><%= prod.id %></td>
-                  <td><%= prod.codigo %></td>
-                  <td><%= prod.nombre %></td>
-                  <td><%= prod.descripcion %></td>
-                  <td><%= prod.precio%></td>
-                  <td><%= prod.stock %></td>
-                  <td><%= prod.creado_en.toISOString().slice(0, 19).replace('T', ' ') %></td>
-                  <td><%= prod.actualizado_en.toISOString().slice(0, 19).replace('T', ' ') %></td>
-                  <td>
-                  <a class="btn-edit" href="/edit/<%= prod.id %>">Editar</a>
-                  <a class="btn-delete" href="/delete/<%= prod.id %>" onclick="return confirm('¿Eliminar este producto?');">Eliminar</a>
-                  </td>
-                </tr>
-              <% }) %>
-            <% } %>
-          </tbody>
-        </table>
-    </div>
+  
+
+  <!-- Incluye tu script JS que realizará el fetch y actualizará la tabla -->
+  <script src="/js/productos-busqueda.js"></script>
+
+    <!-- Contenedor de mensajes de error o sin resultados -->
+  <div id="mensajeSinResultados" style="display: none; color: #b00; margin: 10px 0;">
+    No se encontraron productos para el término ingresado.
+  </div>
+  <div id="mensajeError" style="display: none; color: #b00; margin: 10px 0;">
+    Ocurrió un error al buscar los productos. Inténtalo de nuevo más tarde.
+  </div>
+  <!-- Contenedor para la tabla de resultados -->
+  <section class="tabla-container">
+    <table id="tablaProductos" border="1" cellpadding="5" cellspacing="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio (Q)</th>
+          <th>Cantidad</th>
+          <th>Valor Total (Q)</th>
+          <th>Creado</th>
+          <th>Actualizado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí se inyectarán las filas vía JavaScript -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Sección de totales: sumas dinámicas -->
+  <section class="totales-container" style="margin-top: 15px;">
+    <strong>Total Precios (Q): </strong><span id="totalPrecios">0.00</span>
+    &nbsp;&nbsp;
+    <strong>Total Cantidades: </strong><span id="totalCantidades">0</span>
+  </section>
 
   </div>
 </div>
