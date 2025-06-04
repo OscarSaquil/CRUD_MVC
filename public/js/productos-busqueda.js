@@ -51,8 +51,8 @@ function renderizarTabla(productos) {
       <td>${formatearMonto(prod.precio)}</td>
       <td>${prod.stock}</td>
       <td>${formatearMonto(valorTotalProducto)}</td>
-      <td>${new Date(prod.creado).toLocaleString()}</td>
-      <td>${new Date(prod.actualizado).toLocaleString()}</td>
+      <td>${new Date(prod.creado_en).toLocaleString()}</td>
+      <td>${new Date(prod.actualizado_en).toLocaleString()}</td>
       <td>
         <a href="/editar/${prod.id}" class="btn-editar">Editar</a>
         <a href="/eliminar/${prod.id}" class="btn-eliminar">Eliminar</a>
