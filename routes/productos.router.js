@@ -10,15 +10,15 @@ router.get('/productos', productController.getIndex);
 router.get('/prueba', productController.prueba);
 
 // Crear producto
-router.get('/create', productController.getCreate);
-router.post('/create', productController.postCreate);
+router.get('/crear', productController.getCreate);
+router.post('/crear', productController.postCreate);
 
 // Editar producto
-router.get('/edit/:id', productController.getEdit);
-router.post('/edit/:id', productController.postEdit);
+router.get('/editar/:id', productController.getEdit);
+router.post('/editar/:id', productController.postEdit);
 
 // Eliminar producto
-router.get('/delete/:id', productController.getDelete);
+router.get('/eliminar/:id', productController.getDelete);
 
 
 router.get('/buscar', productController.buscarProductosJSON);

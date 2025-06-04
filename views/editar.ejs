@@ -2,7 +2,7 @@
 
 <h2>Editar Producto #<%= producto.id %></h2>
 
-<form action="/edit/<%= producto.id %>" method="POST" class="form-product">
+<form action="/editar/<%= producto.id %>" method="POST" class="form-product">
   <label for="codigo">Codigo:</label><br>
   <input type="text" id="codigo" name="codigo" value="<%= producto.codigo %>"required><br><br>
   <label for="nombre">Nombre:</label><br>
